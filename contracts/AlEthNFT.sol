@@ -33,6 +33,10 @@ contract AlEthNFT is ERC721, IAlEthNFT, AccessControlEnumerable {
         tokenDatas[_tokenId] = _tokenData;
     }
 
+    function tokenData(uint256 _tokenId) external override returns(uint256) {
+        return tokenDatas[_tokenId];
+    }
+
     function _baseURI() internal view virtual override returns (string memory) {
         return baseTokenURI;
     }
