@@ -14,7 +14,7 @@ contract AlEthNFT is ERC721, IAlEthNFT, AccessControlEnumerable {
     mapping(uint256 => uint256) internal tokenDatas;
 
     modifier onlyMinter {
-        require(hasRole(MINTER_ROLE, _msgSender()));
+        require(hasRole(MINTER_ROLE, _msgSender()), "AlEthNFT.onlyMinter: msg.sender not minter");
         _;
     }
 
@@ -33,7 +33,7 @@ contract AlEthNFT is ERC721, IAlEthNFT, AccessControlEnumerable {
         tokenDatas[_tokenId] = _tokenData;
     }
 
-    function tokenData(uint256 _tokenId) external override returns(uint256) {
+    function tokenData(uint256 _tokenId) external view override returns(uint256) {
         return tokenDatas[_tokenId];
     }
 
